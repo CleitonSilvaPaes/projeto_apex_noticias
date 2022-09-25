@@ -3,7 +3,7 @@ from django.db import models
 class Autor(models.Model):
 
     nome = models.CharField(max_length=255, blank=False)
-    avatar = models.CharField(max_length=300, blank=True)
+    avatar = models.CharField(max_length=300, default='https://www.gravatar.com/avatar/?s=200&r=pg&d=mp')
     apresentacao = models.TextField(blank=False)
 
 class Categoria(models.Model):
