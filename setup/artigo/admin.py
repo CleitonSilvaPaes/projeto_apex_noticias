@@ -16,7 +16,7 @@ admin.site.register(Autor, ListandoAutor)
 # Start Admin Artigo
 class ListandoArtigo(admin.ModelAdmin):
 
-    list_display = ('id', 'titulo', 'autor', 'categoria', )
+    list_display = ('id', 'titulo', 'autor', 'categoria', 'created_at', 'ativo')
     list_display_links = ('id', 'autor', 'categoria')
     search_fields = ('id', 'autor', 'titulo')
 

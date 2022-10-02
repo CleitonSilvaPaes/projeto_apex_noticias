@@ -6,9 +6,17 @@ class Autor(models.Model):
     avatar = models.CharField(max_length=300, default='https://www.gravatar.com/avatar/?s=200&r=pg&d=mp')
     apresentacao = models.TextField(blank=False)
 
+    def __str__(self):
+        return self.nome
+    
+
 class Categoria(models.Model):
 
     nome = models.CharField(max_length=100, blank=False)
+    texto = models.TextField(blank=True)
+
+    def __str__(self) -> str:
+        return self.nome
 
 class Artigo(models.Model):
 
@@ -23,6 +31,9 @@ class Artigo(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     ativo = models.BooleanField(default=True, editable=True)
+
+    def __str__(self) -> str:
+        return f'{self.titulo} - {self.autor}'
 
 class ControleViews(models.Model):
     artigo_id = models.ForeignKey(Artigo, on_delete=models.CASCADE)
