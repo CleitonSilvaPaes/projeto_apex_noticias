@@ -25,7 +25,7 @@ def create_context_base():
         'categorias' : Categoria.objects.all(),
         'categoria_atual' : None,
         'popular_news' : noticias[:3],
-        'noticias' : noticias
+        'noticias' : noticias,
     }
 
     return context
@@ -43,8 +43,12 @@ def categoria(request, nome=None):
     context = create_context_base()
 
     if nome != None:
-        noticias = Artigo.objects.all().filter(ativo='True').filter(categoria=Categoria.objects.get(nome=nome))
-        context['categoria_atual'] = noticias
+        '''
+            # feito dessa maneita para evitar de faze uma nova consuta ao banco
+            # o mesmo resultado pode ser obitido com 
+            # context['categoria_atual'] = Artigo.objects.all().filter(ativo='True').filter(categoria=Categoria.objects.get(nome=nome))
+        '''
+        context['categoria_atual'] = context['noticias'].filter(categoria=Categoria.objects.get(nome=nome))
         context['nome_categoria'] = nome
         return render(request, 'artigo/categoria.html', context)
 
