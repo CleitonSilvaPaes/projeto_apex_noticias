@@ -1,3 +1,4 @@
+from webbrowser import get
 from django.shortcuts import render, redirect
 from portal.views import create_context_base
 from .models import *
@@ -13,5 +14,3 @@ def get_artigo(request, id):
         return render(request, 'artigo/artigo.html', context)
 
     return redirect('index')
-
-    
