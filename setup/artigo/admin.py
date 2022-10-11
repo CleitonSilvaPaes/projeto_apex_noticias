@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Autor, Artigo, Categoria, ControleViews
+from .models import Autor, Artigo, Categoria, ControleViews, Comentario
 
 admin.site.site_header = 'Portal de Noticias'
 
@@ -33,6 +33,7 @@ class ListandoCategoria(admin.ModelAdmin):
 admin.site.register(Categoria, ListandoCategoria)
 # End Admin Categoria
 
+# Start Admin Controle Views
 class ListandoControleViews(admin.ModelAdmin):
 
     list_display = ('id', 'artigo_id', )
@@ -40,3 +41,19 @@ class ListandoControleViews(admin.ModelAdmin):
     search_fields = ('id', 'artigo_id')
 
 admin.site.register(ControleViews, ListandoControleViews)
+# End Admin Controle Views
+
+# Start Admin Comentario
+@admin.register(Comentario)
+class ComentarioAdmin(admin.ModelAdmin):
+    list_display = ('nome', 'mensagem', 'artigo', 'created_on', 'ativo')
+    list_filter = ('ativo', 'created_on')
+    search_fields = ('nome', 'email', 'mensagem')
+    actions = ['aprovar_comentario', 'reprovar_comentario']
+
+    def aprovar_comentario(self, request, queryset):
+        queryset.update(ativo=True)
+
+    def reprovar_comentario(self, request, queryset):
+        queryset.update(ativo=False)
+# End Admin Comentario

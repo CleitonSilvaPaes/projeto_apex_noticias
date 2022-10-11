@@ -35,6 +35,21 @@ class Artigo(models.Model):
     def __str__(self) -> str:
         return f'{self.titulo} - {self.autor}'
 
+class Comentario(models.Model):
+    artigo = models.ForeignKey(Artigo, on_delete=models.CASCADE, related_name='comentarios')
+    nome = models.CharField(max_length=80)
+    email = models.EmailField()
+    mensagem = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+    ativo = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ['created_on']
+
+    def __str__(self):
+        return f'Comentario :- {self.mensagem} por {self.nome}'
+    
+
 class ControleViews(models.Model):
     artigo_id = models.ForeignKey(Artigo, on_delete=models.CASCADE)
     clicks = models.IntegerField()
