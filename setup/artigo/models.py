@@ -41,7 +41,7 @@ class Comentario(models.Model):
     email = models.EmailField()
     mensagem = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
-    ativo = models.BooleanField(default=False)
+    ativo = models.BooleanField(default=True)
 
     class Meta:
         ordering = ['created_on']
@@ -51,5 +51,5 @@ class Comentario(models.Model):
     
 
 class ControleViews(models.Model):
-    artigo_id = models.ForeignKey(Artigo, on_delete=models.CASCADE)
+    artigo_id = models.ForeignKey(Artigo, on_delete=models.CASCADE, related_name='visualizacao')
     clicks = models.IntegerField()

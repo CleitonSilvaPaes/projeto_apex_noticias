@@ -44,7 +44,7 @@
                                 </div>
                                 <div class="d-flex align-items-center">
                                     <span class="ml-3"><i class="far fa-eye mr-2"></i>12345</span>
-                                    <span class="ml-3"><i class="far fa-comment mr-2"></i>123</span>
+                                    <span class="ml-3"><i class="far fa-comment mr-2"></i>{{comentarios.count}}</span>
                                 </div>
                             </div>
                         </div>
@@ -62,7 +62,7 @@
                                             <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2" href="{% url 'categoria' item.categoria.nome %}">{{item.categoria.nome}}</a>
                                             <a class="text-white" href="{% url 'artigo' item.id %}"><small>{{item.updated_at}}</small></a>
                                         </div>
-                                        <a class="h6 m-0 text-white text-uppercase font-weight-semi-bold" href="{% url 'artigo' item.id %}">Controle joystick sem fio Sony PlayStation Dualshock 4 magma red</a>
+                                        <a class="h6 m-0 text-white text-uppercase font-weight-semi-bold" href="{% url 'artigo' item.id %}">{{item.titulo}}</a>
                                     </div>
                                 </div>
                             </div>
